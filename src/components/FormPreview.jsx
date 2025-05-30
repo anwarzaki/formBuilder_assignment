@@ -21,7 +21,7 @@ function FormPreview() {
   };
 
   return (
-    <div className={`p-4 border rounded  ${getWidth()}`}>
+    <div className={`p-4 border rounded text-gray-500 ${getWidth()}`}>
       {form.fields.map((field) => (
         <div key={field.id} className="mb-4">
           <label className="block mb-1">
