@@ -87,6 +87,7 @@ export function FormProvider({ children }) {
       "New Index:",
       newHistory.length - 1
     );
+    saveForm(newForm); // Add this line
   };
 
   const undo = () => {

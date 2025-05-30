@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useFormContext } from '../context/FormContext';
-import { validateField } from '../utils/validators';
+import { useState } from "react";
+import { useFormContext } from "../context/FormContext";
+import { validateField } from "../utils/validators";
 
 // Real-time form preview
 function FormPreview() {
@@ -15,19 +15,20 @@ function FormPreview() {
   };
 
   const getWidth = () => {
-    if (previewMode === 'mobile') return 'w-80';
-    if (previewMode === 'tablet') return 'w-96';
-    return 'w-full';
+    if (previewMode === "mobile") return "w-80";
+    if (previewMode === "tablet") return "w-96";
+    return "w-full";
   };
 
   return (
-    <div className={`p-4 border rounded ${getWidth()}`}>
+    <div className={`p-4 border rounded  ${getWidth()}`}>
       {form.fields.map((field) => (
         <div key={field.id} className="mb-4">
           <label className="block mb-1">
-            {field.label} {field.required && <span className="text-red-500">*</span>}
+            {field.label}{" "}
+            {field.required && <span className="text-red-500">*</span>}
           </label>
-          {field.type === 'text' && (
+          {field.type === "text" && (
             <input
               type="text"
               placeholder={field.placeholder}
@@ -35,19 +36,21 @@ function FormPreview() {
               className="p-2 border rounded w-full"
             />
           )}
-          {field.type === 'textarea' && (
+          {field.type === "textarea" && (
             <textarea
               placeholder={field.placeholder}
               onChange={(e) => handleChange(field.id, e.target.value)}
               className="p-2 border rounded w-full"
             />
           )}
-          {field.type === 'dropdown' && (
+          {field.type === "dropdown" && (
             <select
               onChange={(e) => handleChange(field.id, e.target.value)}
               className="p-2 border rounded w-full"
             >
-              <option value="">{field.placeholder || 'Select an option'}</option>
+              <option value="">
+                {field.placeholder || "Select an option"}
+              </option>
               {field.options?.map((option) => (
                 <option key={option} value={option}>
                   {option}
@@ -55,21 +58,23 @@ function FormPreview() {
               ))}
             </select>
           )}
-          {field.type === 'checkbox' && (
+          {field.type === "checkbox" && (
             <input
               type="checkbox"
               onChange={(e) => handleChange(field.id, e.target.checked)}
               className="mr-2"
             />
           )}
-          {field.type === 'date' && (
+          {field.type === "date" && (
             <input
               type="date"
               onChange={(e) => handleChange(field.id, e.target.value)}
               className="p-2 border rounded w-full"
             />
           )}
-          {field.helpText && <p className="text-sm text-gray-500">{field.helpText}</p>}
+          {field.helpText && (
+            <p className="text-sm text-gray-500">{field.helpText}</p>
+          )}
           {errors[field.id]?.map((error) => (
             <p key={error} className="text-red-500 text-sm">
               {error}

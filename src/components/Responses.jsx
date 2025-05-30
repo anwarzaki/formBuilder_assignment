@@ -1,13 +1,23 @@
 import { useParams } from "react-router-dom";
 import { loadForm, loadResponses } from "../utils/storage";
 import { useFormContext } from "../context/FormContext";
+import { useState } from "react";
 
 // View form responses
 function Responses() {
   const { formId } = useParams();
+  console.log("Form ID from URL:", formId); // Debug: Log the formId
   const form = loadForm(formId);
-  const responses = loadResponses(formId);
+  console.log("Loaded form:", form); // Debug: Log the form
+  const [responses, setResponses] = useState(loadResponses(formId));
+  console.log("Loaded responses:", responses); // Debug: Log the responses
   const { theme } = useFormContext();
+
+  const clearResponses = () => {
+    // Add function
+    localStorage.removeItem(`responses_${formId}`);
+    setResponses([]);
+  };
 
   if (!form) return <div>Form not found</div>;
 
@@ -22,7 +32,7 @@ function Responses() {
         <p>No responses yet</p>
       ) : (
         responses.map((response, index) => (
-          <div key={index} className="p-4 mb-4 bg-gray-100 rounded">
+          <div key={index} className="p-4 mb-4  rounded">
             <p>
               Submitted at: {new Date(response.submittedAt).toLocaleString()}
             </p>

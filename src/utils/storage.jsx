@@ -1,6 +1,6 @@
-
 export function saveForm(form) {
   localStorage.setItem("form", JSON.stringify(form));
+  localStorage.setItem(`form_${form.id}`, JSON.stringify(form)); // Add this line
 }
 
 export function getForm() {
@@ -33,6 +33,7 @@ export function loadTemplates() {
 export function saveResponse(response) {
   const responses = loadResponses(response.formId);
   responses.push(response);
+  console.log(`Saving responses for form ${response.formId}:`, responses); // Add logging
   localStorage.setItem(
     `responses_${response.formId}`,
     JSON.stringify(responses)

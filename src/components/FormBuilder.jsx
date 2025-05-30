@@ -40,7 +40,7 @@ function DraggableField({ field, index }) {
   return (
     <div
       ref={ref}
-      className={`p-4 mb-2 bg-gray-200 dark:bg-gray-700 rounded ${
+      className={`p-4 mb-2 rounded ${
         isDragging ? "opacity-50" : ""
       }`}
       role="listitem"
@@ -124,7 +124,7 @@ function FormBuilder() {
 
       <div className="flex gap-4">
         {/* Add Field Buttons */}
-        <div className="w-1/5 p-4 bg-white dark:bg-gray-800 rounded shadow">
+        <div className="w-1/5 p-4  rounded shadow">
           <h2 className="text-lg font-bold mb-2 text-black dark:text-white">
             Add Field
           </h2>
@@ -144,7 +144,7 @@ function FormBuilder() {
         <div className="w-2/5">
           <h2 className="text-lg font-bold mb-2">Form Fields</h2>
           {form.fields.length === 0 ? (
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-500 dark:text-gray-500">
               No fields added yet.
             </p>
           ) : (
@@ -161,7 +161,7 @@ function FormBuilder() {
               min="1"
               value={form.steps}
               onChange={(e) => setStepCount(Number(e.target.value))}
-              className="p-2 border rounded w-20 text-black dark:bg-gray-700 dark:text-white"
+              className="p-2 border rounded w-20"
               aria-label="Number of steps"
             />
           </div>
@@ -174,12 +174,18 @@ function FormBuilder() {
           <select
             value={previewMode}
             onChange={(e) => setPreviewMode(e.target.value)}
-            className="p-2 border rounded w-full mb-4 text-black dark:bg-gray-700 dark:text-white"
+            className="p-2 border rounded w-full mb-4"
             aria-label="Preview mode selector"
           >
-            <option value="desktop">Desktop</option>
-            <option value="tablet">Tablet</option>
-            <option value="mobile">Mobile</option>
+            <option value="desktop" className="text-black">
+              Desktop
+            </option>
+            <option value="tablet" className="text-black">
+              Tablet
+            </option>
+            <option value="mobile" className="text-black">
+              Mobile
+            </option>
           </select>
           <FormPreview />
         </div>
